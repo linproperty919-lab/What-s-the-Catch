@@ -1,0 +1,23 @@
+{
+  "name": "whats-the-catch",
+  "description": "Flags auto-renewals, hidden fees and dark patterns on checkout pages, on-device.",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "license": "MIT",
+  "scripts": {
+    "dev": "wxt",
+    "build": "wxt build",
+    "zip": "wxt zip",
+    "compile": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "postinstall": "wxt prepare"
+  },
+  "devDependencies": {
+    "happy-dom": "^21.0.4",
+    "typescript": "^5.9.3",
+    "vitest": "^5.1.1",
+    "wxt": "^0.21.5"
+  }
+}

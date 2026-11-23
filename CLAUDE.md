@@ -4,13 +4,14 @@ Chrome extension (Manifest V3) that flags auto-renewals, hidden fees and dark pa
 
 ## Stack
 - TypeScript, WXT (builds the MV3 manifest), Vite
-- Vitest for unit tests, Playwright for e2e on saved fixture pages
+- Vitest (happy-dom) for unit and fixture tests; Playwright e2e comes later
 - No backend, no database, no analytics in v1
 
 ## Commands
 - `npm run dev`: WXT dev build with hot reload (load `.output/chrome-mv3` unpacked)
 - `npm test`: Vitest
-- `npm run e2e`: Playwright against `tests/fixtures/`
+- `npm run compile`: TypeScript type check
+- Fixture lab: run `npm run dev`, open the popup, click "Open the fixture lab" to score rules + Gemini Nano
 - `npm run build` / `npm run zip`: production build and store zip
 
 ## Layout
@@ -22,7 +23,9 @@ Chrome extension (Manifest V3) that flags auto-renewals, hidden fees and dark pa
 - `src/lib/ai.ts`: the ONLY file that touches the Prompt API (`LanguageModel`)
 - `src/lib/schema.ts`: JSON schema passed as `responseConstraint`
 - `src/lib/storage.ts`: wrapper over `chrome.storage` (sync = settings, local = history, reminders)
-- `tests/fixtures/`: saved checkout/signup HTML pages with expected findings
+- `src/entrypoints/lab/`: fixture lab page (Week 1 spike) that scores rules and AI
+- `public/fixtures/`: saved checkout/signup HTML pages + `index.json` expected terms
+- `tests/`: Vitest tests that run over the fixtures
 
 ## Hard rules
 - Never read, store or send payment card fields (`autocomplete="cc-*"`, payment iframes). Extraction must skip them.
@@ -36,4 +39,5 @@ Chrome extension (Manifest V3) that flags auto-renewals, hidden fees and dark pa
 - Small vertical slices: one feature + its tests per change.
 - Write or update a test before fixing a bug.
 - Keep `ai.ts` thin so Prompt API changes touch one file.
-- Run `npm test` after each change; run e2e before a PR.
+- Run `npm test` and `npm run compile` after each change.
+- Every new rule needs at least one fixture page that exercises it.
