@@ -1,0 +1,8 @@
+[
+  { "file": "streamly-trial.html", "note": "Synthetic: trial, tiny print, phone-only cancel", "expected": { "trial_days": 7, "renews": true, "cancel_method": "phone" } },
+  { "file": "ironhouse-gym.html", "note": "Synthetic: free month, contract, ETF in collapsed details", "expected": { "trial_days": 30, "renews": true, "cancel_method": "in_person" } },
+  { "file": "freshbox-meal-kit.html", "note": "Synthetic: intro price then weekly billing", "expected": { "trial_days": 0, "renews": true, "cancel_method": "online" } },
+  { "file": "tixly-tickets.html", "note": "Synthetic: one-off with stacked fees, pre-ticked insurance", "expected": { "trial_days": 0, "renews": false, "cancel_method": "unknown" } },
+  { "file": "dailyledger-news.html", "note": "Synthetic: intro rate then price jump", "expected": { "trial_days": 0, "renews": true, "cancel_method": "phone" } },
+  { "file": "craftpaper-one-time.html", "note": "Synthetic: negative control", "expected": { "trial_days": 0, "renews": false, "cancel_method": "unknown" } }
+]
